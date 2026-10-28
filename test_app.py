@@ -9,7 +9,8 @@ def client():
 def test_home_route(client):
     response = client.get('/')
     assert response.status_code == 200
-    assert b"Hello World! DevOps CI/CD Pipeline Working" in response.data
+    assert b"Hello World! DevOps CI/CD Pipeline Working - V2 UPDATE" in response.data
+
 
 def test_health_route(client):
     response = client.get('/health')

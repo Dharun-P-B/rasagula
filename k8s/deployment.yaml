@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-flask-deployment
+  labels:
+    app: devops-flask
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: devops-flask
+  template:
+    metadata:
+      labels:
+        app: devops-flask
+    spec:
+      containers:
+      - name: devops-flask-container
+        image: dharunpb/devops-flask-app:72d5823ac1b6ad55c3b9e2240479d9337afb35bf
+        ports:
+        - containerPort: 5000
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 5
